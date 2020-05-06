@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\Property\PropertyApprovedEvent;
+use App\Events\Property\PropertyCreatedEvent;
+use App\Listeners\Property\UserNewPropertyListener;
+use App\Listeners\Property\UserPropertyApprovedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        PropertyApprovedEvent::class => [
+            UserPropertyApprovedListener::class,
+        ],
+        PropertyCreatedEvent::class => [
+            UserNewPropertyListener::class,
+        ]
     ];
 
     /**
