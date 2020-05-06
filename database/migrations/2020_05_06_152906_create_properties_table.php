@@ -19,6 +19,11 @@ class CreatePropertiesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->unsignedBigInteger('region_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->boolean('approved')->default(false);
             $table->timestamps();
         });
