@@ -11,6 +11,16 @@ use Illuminate\View\View;
 
 class PropertyController extends Controller
 {
+    public function index()
+    {
+        return view('property.index', ['properties' => Property::query()->where('approved', true)->get()]);
+    }
+
+    public function create()
+    {
+        
+    }
+
     /**
      * @param CreatePropertyRequest $request
      * @return View
